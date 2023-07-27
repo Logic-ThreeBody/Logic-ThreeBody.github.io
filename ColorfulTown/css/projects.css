@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-
 /*导航栏部分*/
 .nav-bar {
     max-width: 100%;
@@ -15,7 +14,6 @@
     background-color: white;
     display: flex;
     overflow-x: hidden;
-
 }
 
 .nav-bar a {

@@ -9,12 +9,13 @@
     <!-- 修改页签icon logo -->
     <link rel="shortcut icon" type="image/x-icon" href="img/colorfulTownLogo.png">
     </link>
+    <script src="js/index.js"></script>
 </head>
 
 <body>
     <!-- 导航栏 -->
     <div class='nav-bar'>
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo main">
             <img src="img/colorfulTownLogo.png" alt="logo" class="logoImg">
             <p>&nbsp;缤纷小镇</p>
         </a>
@@ -24,7 +25,6 @@
         <a href="">联系我们</a>
     </div>
 
-
     <div class="one">
         <img src="img/mainPageNo1.png" alt="图片丢失">
         <h1> 打造你的城市梦想!</h1>
@@ -33,8 +33,136 @@
 
     <div class="two">
         <div class="UI">
-            <h1>丰富的游戏界面</h1>
+            <div>
+                <h1>丰富的游戏界面</h1>
+                <p>
+                    欢迎来到缤纷小镇！在这个充满活力和乐趣的地方，您将进入一个丰富的
+                    <br>游戏界面，尽情享受无尽的娱乐和冒险体验。
+                    <br>
+                    缤纷小镇是一个绚烂多彩的城市，每个角落都弥漫着欢声笑语和奇幻的氛<br>围。步入这个游戏界面，您将置身于一座充满创意和惊喜的城市景观中。<br>高楼大厦、彩色灯光和华丽的装饰营造出一个独特而迷人的游戏场景。在<br>缤纷小镇，您可以选择参与各种各样的游戏活动。挑战刺激的赛车比赛，<br>在曲折的街道上驾驶超级跑车飞驰而过；或者加入勇敢的冒险家，探索神<br>秘的迷宫，发现隐藏的宝藏和神奇的生物。除此之外，您还可以在缤纷小<br>镇的购物中心尽情购物，体验时尚、美食和文化的碰撞。逛街购物、品尝<br>美食、参观艺术展览，让您尽情享受购物的乐趣。缤纷小镇还有各种互动<br>娱乐设施，例如游乐园、水上乐园和迷你高尔夫等。无论您是想享受刺激<br>的过山车还是放松的漂流，这里都能满足您的需求。来到缤纷小镇，您将<br>感受到无与伦比的快乐和充实。在这个丰富的游戏界面中，每一天都将成<br>为一个新的冒险故事。快来缤纷小镇，与朋友们一起畅游这个令人兴奋的<br>虚拟世界吧！
+                </p>
+                <div class="slider">
+                    <div class="slider-wrapper">
+                        <img src="img/全景图-轮播.png" alt="" />
+                    </div>
+                    <div class="slider-footer">
+                        <p>多元化的游戏场景</p>
+                        <ul class="slider-indicator">
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <div class="toggle">
+                            <button class="prev">&lt;</button>
+                            <button class="next">&gt;</button>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    // 1. 初始数据
+                    const data = [
+                        { url: 'img/全景图-轮播.png', title: '多元化的游戏场景', color: 'rgb(100, 67, 68)' },
+                        { url: 'img/全景图-轮播.png', title: '', color: 'rgb(43, 35, 26)' },
+                        { url: 'img/全景图-轮播.png', title: '', color: 'rgb(36, 31, 33)' },
+                        { url: 'img/全景图-轮播.png', title: '', color: 'rgb(139, 98, 66)' },
+                        { url: 'img/全景图-轮播.png', title: '', color: 'rgb(67, 90, 92)' },
+                        { url: 'img/全景图-轮播.png', title: '', color: 'rgb(166, 131, 143)' },
+                        { url: 'img/全景图-轮播.png', title: '', color: 'rgb(53, 29, 25)' },
+                        { url: 'img/全景图-轮播.png', title: '', color: 'rgb(99, 72, 114)' },
+                    ]
+                    // 获取元素
+                    const img = document.querySelector('.slider-wrapper img')
+                    const p = document.querySelector('.slider-footer p')
+                    const footer = document.querySelector('.slider-footer')
+                    // 1. 右按钮业务
+                    // 1.1 获取右侧按钮 
+                    const next = document.querySelector('.next')
+                    let i = 0  // 信号量 控制播放图片张数
+                    // 1.2 注册点击事件
+
+                    next.addEventListener('click', function () {
+                        // console.log(11)
+                        i++
+                        // 1.6判断条件  如果大于8 就复原为 0
+                        // if (i >= 8) {
+                        //   i = 0
+                        // }
+                        i = i >= data.length ? 0 : i
+                        // 1.3 得到对应的对象
+                        // console.log(data[i])
+                        // 调用函数
+                        toggle()
+                    })
+
+                    // 2. 左侧按钮业务
+                    // 2.1 获取左侧按钮 
+                    const prev = document.querySelector('.prev')
+                    // 1.2 注册点击事件
+                    prev.addEventListener('click', function () {
+                        i--
+                        // 判断条件  如果小于0  则爬到最后一张图片索引号是 7
+                        // if (i < 0) {
+                        //   i = 7
+                        // }
+                        i = i < 0 ? data.length - 1 : i
+                        // 1.3 得到对应的对象
+                        // console.log(data[i])
+                        // 调用函数
+                        toggle()
+                    })
+
+                    // 声明一个渲染的函数作为复用
+                    function toggle() {
+                        // 1.4 渲染对应的数据
+                        img.src = data[i].url
+                        p.innerHTML = data[i].title
+                        footer.style.backgroundColor = data[i].color
+                        // 1.5 更换小圆点    先移除原来的类名， 当前li再添加 这个 类名
+                        document.querySelector('.slider-indicator .active').classList.remove('active')
+                        document.querySelector(`.slider-indicator li:nth-child(${i + 1})`).classList.add('active')
+                    }
+
+
+
+                    // 3. 自动播放模块
+                    let timerId = setInterval(function () {
+                        // 利用js自动调用点击事件  click()  一定加小括号调用函数
+                        next.click()
+                    }, 1000)
+
+
+                    // 4. 鼠标经过大盒子，停止定时器
+                    const slider = document.querySelector('.slider')
+                    // 注册事件
+                    slider.addEventListener('mouseenter', function () {
+                        // 停止定时器
+                        clearInterval(timerId)
+                    })
+
+                    // 5. 鼠标离开大盒子，开启定时器
+                    // 注册事件
+                    slider.addEventListener('mouseleave', function () {
+                        // 停止定时器
+                        if (timerId) clearInterval(timerId)
+                        // 开启定时器
+                        timerId = setInterval(function () {
+                            // 利用js自动调用点击事件  click()  一定加小括号调用函数
+                            next.click()
+                        }, 1000)
+                    })
+                </script>
+
+            </div>
         </div>
+    </div>
+
+    <div class="three">
+        <h1>hello world</h1>
     </div>
 </body>
 
